@@ -1,0 +1,34 @@
+﻿<Page x:Class="WpfOvo.Pages.Autho"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfOvo.Pages"
+        mc:Ignorable="d"
+        Title="Autorithation" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="260"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="260">
+            <TextBlock Text="login:"/>
+            <TextBox x:Name="tbxLogin"/>
+            <TextBlock Text="password:"/>
+            <PasswordBox x:Name="pasboxPassword" />
+            <StackPanel Orientation="Vertical" Height="100" HorizontalAlignment="Center" Width="260">
+                <TextBlock x:Name="tblockCaptcha" Text="captcha"/>
+                <TextBox x:Name="tboxCaptcha"/>
+                <TextBlock x:Name="tblockTimer" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center" Width="260">
+                <Button x:Name="btnEnterGuests" Margin="5,15,5,5" Content="log as guest" Click="btnEnterGuests_Click"/>
+                <Button x:Name="btnEnter" Margin="5,15,5,5" Content="log in" Click="btnEnter_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center" Width="130">
+                <Button x:Name="btnSign" Content="create account"  Click="btnSign_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
