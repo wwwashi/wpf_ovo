@@ -60,6 +60,8 @@ namespace WpfOvo.Pages
                 {
                     MessageBox.Show("Неверная капча");
                     countUnsuccessful++;
+                    if (countUnsuccessful > 3)
+                        TimerBLock();
                     return;
                 }
                 else
@@ -89,15 +91,16 @@ namespace WpfOvo.Pages
                     GenerateCaptcha();
                     countUnsuccessful++;
                     if (countUnsuccessful > 3)
-                    {
                         TimerBLock();
-                    }
                 }
             }
             else
             {
                 MessageBox.Show("пользователя с логином '" + Login + "' не существует");
+                GenerateCaptcha();
                 countUnsuccessful++;
+                if (countUnsuccessful > 3)
+                    TimerBLock();
                 return;
             }
         }
