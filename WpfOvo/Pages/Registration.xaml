@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfOvo.Pages"
         mc:Ignorable="d"
-        Title="Registration" Height="450" Width="800" Background="White">
+        Title="Registration">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="260"/>
@@ -13,18 +13,18 @@
             <ColumnDefinition Width="260"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="260">
-            <TextBlock Text="login:"/>
+            <TextBlock Text="логин:"/>
             <TextBox x:Name="tbxLogin"/>
-            <TextBlock Text="password:"/>
+            <TextBlock Text="пароль:"/>
             <TextBox x:Name="tbxPassword"/>
-            <TextBlock Text="surname:"/>
+            <TextBlock Text="фамилия:"/>
             <TextBox x:Name="tbxSurname"/>
-            <TextBlock Text="name:"/>
+            <TextBlock Text="имя:"/>
             <TextBox x:Name="tbxName"/>
-            <TextBlock Text="phone:"/>
+            <TextBlock Text="номер телефона:"/>
             <TextBox x:Name="tbxPhone"/>
             <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center" Width="130">
-                <Button x:Name="btnSign" Content="create account"  Click="btnSign_Click"/>
+                <Button x:Name="btnSign" Content="создать"  Click="btnSign_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

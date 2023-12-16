@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfOvo.Pages"
         mc:Ignorable="d"
-        Title="Admin" Height="500" Width="800" Background="White">
+        Title="Admin">
     <Grid>
-        <Label Name ="fio" Content="" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label x:Name ="fio" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30"/>
     </Grid>
 </Page>

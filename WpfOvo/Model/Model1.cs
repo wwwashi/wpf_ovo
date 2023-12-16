@@ -8,12 +8,13 @@ namespace WpfOvo.Model
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model1")
+            : base("name=Model11")
         {
         }
 
         public virtual DbSet<Acts> Acts { get; set; }
         public virtual DbSet<Alarms> Alarms { get; set; }
+        public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Patrols> Patrols { get; set; }
         public virtual DbSet<PatrolsComposition> PatrolsComposition { get; set; }
         public virtual DbSet<SecurityContracts> SecurityContracts { get; set; }
@@ -45,6 +46,15 @@ namespace WpfOvo.Model
                 .WithRequired(e => e.Alarms)
                 .HasForeignKey(e => e.AlarmsID)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Gender>()
+                .Property(e => e.NameGender)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Gender>()
+                .HasMany(e => e.Users)
+                .WithOptional(e => e.Gender)
+                .HasForeignKey(e => e.GenderID);
 
             modelBuilder.Entity<Patrols>()
                 .Property(e => e.NamePatrols)

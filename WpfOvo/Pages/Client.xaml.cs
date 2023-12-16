@@ -1,11 +1,10 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using WpfOvo.Model;
 
 namespace WpfOvo.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Client.xaml
-    /// </summary>
     public partial class Client : Page
     {
         private Users currentUser;
@@ -18,7 +17,25 @@ namespace WpfOvo.Pages
 
         private void LabelText()
         {
-            fio.Content = "Добро пожаловать " + currentUser.Surname.ToString() + " " + currentUser.Name.ToString();
+            fio.Content = $"{TimeOfDay()}! \n{Gender()} {currentUser.Surname} {currentUser.Name} {currentUser?.Midname}";
+        }
+
+        private string Gender()
+        {
+            int gender = Convert.ToInt32(currentUser.GenderID.ToString());
+            if (gender == 1)
+                return "Mr";
+            if (gender == 2)
+                return "Mrs";
+            return " ";
+        }
+        private string TimeOfDay()
+        {
+            var currentTime = DateTime.Now;
+            if (currentTime.Hour >= 10 && currentTime.Hour <= 12) return "Доброе утро";
+            if (currentTime.Hour >= 12 && currentTime.Hour <= 17) return "Добрый день";
+            if (currentTime.Hour >= 17 && currentTime.Hour <= 19) return "Добрый вечер";
+            return "Добро пожаловать";
         }
     }
 }

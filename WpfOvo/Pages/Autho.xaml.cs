@@ -18,16 +18,15 @@ using WpfOvo.Model;
 using System.Data.Entity;
 using static System.Net.Mime.MediaTypeNames;
 using System.Threading;
+using System.Linq.Expressions;
 
 namespace WpfOvo.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Autho.xaml
-    /// </summary>
     public partial class Autho : Page
     {
         Model1 dbContext = new Model1();
         Users user = new Users();
+        int countUnsuccessful = 0;
         public Autho()
         {
             InitializeComponent();
@@ -38,6 +37,10 @@ namespace WpfOvo.Pages
         {
             NavigationService.Navigate(new Guest());
         }
+        private void btnSign_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Registration());
+        }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
@@ -47,32 +50,39 @@ namespace WpfOvo.Pages
             }
             else
             {
-                MessageBox.Show("Пожалуйста, введите логин и пароль");
+                MessageBox.Show("Пожалуйста, введите логин и пароль", "Предупреждение");
+                countUnsuccessful++;
+                GenerateCaptcha();
+                if (countUnsuccessful % 3 == 0)
+                {
+                    TimerBLock();
+                    return;
+                }
             }
         }
-        int countUnsuccessful = 0;
+        
         private void LoginUser()
         {
 
             if (countUnsuccessful > 0)
             {
-                if (tboxCaptcha.Text != tblockCaptcha.Text)
+                if (countUnsuccessful % 3 == 0) // Проверка 3-ю неправильного ввода, чтобы не обнулять и не пропадала проверка капчи ;)
                 {
-                    MessageBox.Show("Неверная капча");
-                    countUnsuccessful++;
-                    if (countUnsuccessful > 3)
-                        TimerBLock();
+                    TimerBLock();
                     return;
                 }
-                else
+                if (!CheckingCaptcha())
                 {
-                    MessageBox.Show("капча введена правильно");
+                    MessageBox.Show("Неверная капча", "Предупреждение");
+                    countUnsuccessful++;
+                    GenerateCaptcha();
                 }
             }
 
 
-            string Login = tbxLogin.Text;
-            string Password = HashPasswords.HashPasswords.Hash(pasboxPassword.Password.Replace("\"", ""));
+            string Login = tbxLogin.Text.Trim();
+            string pass = pasboxPassword.Password.Trim();
+            string Password = HashPasswords.HashPasswords.Hash(pass.Replace("\"", ""));
 
             user = dbContext.Users.Where(p => p.Login == Login).FirstOrDefault();
             if (user != null)
@@ -82,24 +92,25 @@ namespace WpfOvo.Pages
                     LoadForm(user.RoleID.ToString());
                     tbxLogin.Text = "";
                     tboxCaptcha.Text = "";
+                    countUnsuccessful = 0;
                     tboxCaptcha.Visibility = Visibility.Hidden;
                     tblockCaptcha.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    MessageBox.Show("неверный пароль");
+                    MessageBox.Show("неверный пароль", "Предупреждение");
                     GenerateCaptcha();
                     countUnsuccessful++;
-                    if (countUnsuccessful > 3)
+                    if (countUnsuccessful % 3 == 0)
                         TimerBLock();
                 }
             }
             else
             {
-                MessageBox.Show("пользователя с логином '" + Login + "' не существует");
+                MessageBox.Show("пользователя с логином '" + Login + "' не существует", "Предупреждение");
                 GenerateCaptcha();
                 countUnsuccessful++;
-                if (countUnsuccessful > 3)
+                if (countUnsuccessful % 3 == 0)
                     TimerBLock();
                 return;
             }
@@ -107,13 +118,7 @@ namespace WpfOvo.Pages
 
         private async void TimerBLock()
         {
-            tbxLogin.IsEnabled = false;
-            pasboxPassword.IsEnabled = false;
-            tboxCaptcha.IsEnabled = false;
-
-            btnEnterGuests.IsEnabled = false;
-            btnEnter.IsEnabled = false;
-            btnSign.IsEnabled = false;
+            panel.IsEnabled = false;
 
             await Task.Factory.StartNew(() =>
             {
@@ -128,22 +133,10 @@ namespace WpfOvo.Pages
                 }
             });
 
-            countUnsuccessful = 0;
-
             tblockTimer.Text = "";
-            tbxLogin.IsEnabled = true;
-            pasboxPassword.IsEnabled = true;
-            tboxCaptcha.IsEnabled = true;
-
-            btnEnterGuests.IsEnabled = true;
-            btnEnter.IsEnabled = true;
-            btnSign.IsEnabled = true;
+            panel.IsEnabled = true;
         }
 
-        private void btnSign_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Registration());
-        }
         private void LoadForm(string _role)
         {
             switch (_role)
@@ -158,44 +151,43 @@ namespace WpfOvo.Pages
                     break;
                 //Сотрудник отдела вневедомственной охраны -- составляет договоры 
                 case "3":
-                    NavigationService.Navigate(new Employee(user));
+                    if (TimeWork())
+                    {
+                        NavigationService.Navigate(new Employee(user));
+                    }
+                    else
+                    {
+                        MessageBox.Show("рабочий день закончен или еще не начался", "Предупреждение");
+                    }
                     break;
             }
+        }
+        private bool TimeWork()
+        {
+            var currentTime = DateTime.Now;
+            if (currentTime.Hour < 10 || currentTime.Hour > 17) return false;
+            return true;
         }
         private void GenerateCaptcha()
         {
             tboxCaptcha.Visibility = Visibility.Visible;
             tblockCaptcha.Visibility = Visibility.Visible;
 
-            Random rdm = new Random();
-            int rndNum = rdm.Next(1, 6);
-            switch (rndNum)
+            char[] letters = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789".ToCharArray();
+            Random rand = new Random();
+
+            string word = "";
+            for (int j = 1; j <= 8; j++)
             {
-                case 1:
-                    tblockCaptcha.Text = "ju2sT8Cds";
-                    tblockCaptcha.TextDecorations = TextDecorations.Strikethrough;
-                    break;
-                case 2:
-                    tblockCaptcha.Text = "iNmK2cl";
-                    tblockCaptcha.TextDecorations = TextDecorations.Strikethrough;
-                    break;
-                case 3:
-                    tblockCaptcha.Text = "uOozGk95";
-                    tblockCaptcha.TextDecorations = TextDecorations.Strikethrough;
-                    break;
-                case 4:
-                    tblockCaptcha.Text = "Isfnwk54";
-                    tblockCaptcha.TextDecorations = TextDecorations.Strikethrough;
-                    break;
-                case 5:
-                    tblockCaptcha.Text = "D9ddGjss";
-                    tblockCaptcha.TextDecorations = TextDecorations.Strikethrough;
-                    break;
-                case 6:
-                    tblockCaptcha.Text = "8djJHFsl";
-                    tblockCaptcha.TextDecorations = TextDecorations.Strikethrough;
-                    break;
+                int letter_num = rand.Next(0, letters.Length - 1);
+                word += letters[letter_num];
             }
+
+            tblockCaptcha.Text = word;
+            tblockCaptcha.TextDecorations = TextDecorations.Strikethrough;
+            tboxCaptcha.Text = "";
         }
+        private bool CheckingCaptcha() => tblockCaptcha.Text == tboxCaptcha.Text.Trim();
+
     }
 }
