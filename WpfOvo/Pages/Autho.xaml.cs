@@ -76,6 +76,7 @@ namespace WpfOvo.Pages
                     MessageBox.Show("Неверная капча", "Предупреждение");
                     countUnsuccessful++;
                     GenerateCaptcha();
+                    return;
                 }
             }
 
@@ -165,7 +166,7 @@ namespace WpfOvo.Pages
         private bool TimeWork()
         {
             var currentTime = DateTime.Now;
-            if (currentTime.Hour < 10 || currentTime.Hour > 17) return false;
+            if (currentTime.Hour < 10 || currentTime.Hour > 19) return false;
             return true;
         }
         private void GenerateCaptcha()

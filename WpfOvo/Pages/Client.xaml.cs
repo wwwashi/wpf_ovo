@@ -22,7 +22,7 @@ namespace WpfOvo.Pages
 
         private string Gender()
         {
-            int gender = Convert.ToInt32(currentUser.GenderID.ToString());
+            int? gender = currentUser.GenderID;
             if (gender == 1)
                 return "Mr";
             if (gender == 2)
