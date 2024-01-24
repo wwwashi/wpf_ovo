@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Windows;
 using System.Windows.Controls;
 using WpfOvo.Model;
 
@@ -10,33 +14,103 @@ namespace WpfOvo.Pages
     public partial class Admin : Page
     {
         private Users currentUser;
+        private Model1 context = new Model1();
+        
         public Admin(Users currentUser)
         {
             InitializeComponent();
             this.currentUser = currentUser;
-            LabelText();
-        }
-        private void LabelText()
-        {
-            fio.Content = $"{TimeOfDay()}! \n{Gender()} {currentUser.Surname} {currentUser.Name} {currentUser?.Midname}";
+            var ppl = context.Users.ToList();
+            LViewPpl.ItemsSource = ppl;
         }
 
-        private string Gender()
+        private void Selector_OnSelectionChanged(object sender, RoutedEventArgs e)
         {
-            int gender = Convert.ToInt32(currentUser.GenderID.ToString());
-            if (gender == 1)
-                return "Mr";
-            if (gender == 2)
-                return "Mrs";
-            return " ";
+            NavigationService.Navigate(new Redact(currentUser));
         }
-        private string TimeOfDay()
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var currentTime = DateTime.Now;
-            if (currentTime.Hour >= 10 && currentTime.Hour <= 12) return "Доброе утро";
-            if (currentTime.Hour >= 12 && currentTime.Hour <= 17) return "Добрый день";
-            if (currentTime.Hour >= 17 && currentTime.Hour <= 19) return "Добрый вечер";
-            return "Добро пожаловать";
+            string searchText = txtSearch.Text;
+
+            if (searchText.Length == 0)
+            {
+                var ppl = context.Users.ToList();
+                LViewPpl.ItemsSource = ppl;
+            }
+            else
+            {
+                if (cmbSorting.SelectedIndex == 0)//по возр
+                {
+                    switch (cmbFilter.SelectedIndex)
+                    {
+                        // Должность
+                        case 0:
+                            var filteredAndSortedPpl = context.Users.Where(u => u.UserRole.NameRole.Contains(searchText))
+                                                      .OrderBy(u => u.UserRole.NameRole)
+                                                      .ToList();
+                            LViewPpl.ItemsSource = filteredAndSortedPpl;
+                            break;
+
+                        // Фамилия
+                        case 1:
+                            var filteredAndSortedPpl1 = context.Users.Where(u => u.Surname.Contains(searchText))
+                                                      .OrderBy(u => u.Surname)
+                                                      .ToList();
+                            LViewPpl.ItemsSource = filteredAndSortedPpl1;
+                            break;
+                        // Имя
+                        case 2:
+                            var filteredAndSortedPpl2 = context.Users.Where(u => u.Name.Contains(searchText))
+                                                      .OrderBy(u => u.Name)
+                                                      .ToList();
+                            LViewPpl.ItemsSource = filteredAndSortedPpl2;
+                            break;
+                        // Отчество
+                        case 3:
+                            var filteredAndSortedPpl3 = context.Users.Where(u => u.Midname.Contains(searchText))
+                                                      .OrderBy(u => u.Midname)
+                                                      .ToList();
+                            LViewPpl.ItemsSource = filteredAndSortedPpl3;
+                            break;
+                    }
+                }
+                if (cmbSorting.SelectedIndex == 1)//по убыв
+                {
+                    switch (cmbFilter.SelectedIndex)
+                    {
+                        // Должность
+                        case 0:
+                            var filteredAndSortedPpl = context.Users.Where(u => u.UserRole.NameRole.Contains(searchText))
+                                                      .OrderByDescending(u => u.UserRole.NameRole)
+                                                      .ToList();
+                            LViewPpl.ItemsSource = filteredAndSortedPpl;
+                            break;
+
+                        // Фамилия
+                        case 1:
+                            var filteredAndSortedPpl1 = context.Users.Where(u => u.Surname.Contains(searchText))
+                                                      .OrderByDescending(u => u.Surname)
+                                                      .ToList();
+                            LViewPpl.ItemsSource = filteredAndSortedPpl1;
+                            break;
+                        // Имя
+                        case 2:
+                            var filteredAndSortedPpl2 = context.Users.Where(u => u.Name.Contains(searchText))
+                                .OrderByDescending(u => u.Name)
+                                .ToList();
+                            LViewPpl.ItemsSource = filteredAndSortedPpl2;
+                            break;
+                        // Отчество
+                        case 3:
+                            var filteredAndSortedPpl3 = context.Users.Where(u => u.Midname.Contains(searchText))
+                                                      .OrderByDescending(u => u.Midname)
+                                                      .ToList();
+                            LViewPpl.ItemsSource = filteredAndSortedPpl3;
+                            break;
+                    }
+
+                }
+            }
         }
     }
 }

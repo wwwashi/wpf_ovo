@@ -13,19 +13,19 @@
             <ColumnDefinition Width="260"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1" x:Name="panel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="260">
-            <TextBlock Text="логин:"/>
-            <TextBox x:Name="tbxLogin"/>
-            <TextBlock Text="пароль:"/>
-            <PasswordBox x:Name="pasboxPassword" />
-            <StackPanel Orientation="Vertical" Height="100" HorizontalAlignment="Center" Width="260">
-                <TextBlock x:Name="tblockCaptcha" Text="капча:"/>
-                <TextBox x:Name="tboxCaptcha"/>
-                <TextBlock x:Name="tblockTimer" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center" Width="260">
-                <Button x:Name="btnEnterGuests" Margin="5,15,5,5" Content="гостевой" Click="btnEnterGuests_Click"/>
-                <Button x:Name="btnEnter" Margin="5,15,5,5" Content="войти" Click="btnEnter_Click"/>
-            </StackPanel>
+                <TextBlock Text="логин:"/>
+                <TextBox x:Name="tbxLogin"/>
+                <TextBlock Text="пароль:"/>
+                <PasswordBox x:Name="pasboxPassword" />
+                <StackPanel Orientation="Vertical" Height="100" HorizontalAlignment="Center" Width="260">
+                    <TextBlock x:Name="tblockCaptcha" Text="капча:"/>
+                    <TextBox x:Name="tboxCaptcha"/>
+                    <TextBlock x:Name="tblockTimer" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center" Width="260">
+                    <Button x:Name="btnEnterGuests" Margin="5,15,5,5" Content="гостевой" Click="btnEnterGuests_Click"/>
+                    <Button x:Name="btnEnter" Margin="5,15,5,5" Content="войти" Click="btnEnter_Click"/>
+                </StackPanel>
             <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center" Width="130">
                 <Button x:Name="btnSign" Content="создать"  Click="btnSign_Click"/>
             </StackPanel>

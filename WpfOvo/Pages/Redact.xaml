@@ -1,0 +1,42 @@
+﻿<Page x:Class="WpfOvo.Pages.Redact"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfOvo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Redact">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBlock Name="txtFam" Text="Фамилия" Margin="50, 80, 5, 0"/>
+            <TextBlock Name="txtName" Text="Имя" Margin="50, 10, 5, 0"/>
+            <TextBlock Name="txtOtch" Text="Отчество*" Margin="50, 10, 5, 0"/>
+            <TextBlock Name="txtphone" Text="Телефон" Margin="50, 10, 5, 0"/>
+            <TextBlock Name="txtRole" Text="Роль" Margin="50, 10, 5, 0"/>
+            <TextBlock Name="txtlogin" Text="Логин" Margin="50, 10, 5, 0"/>
+            <TextBlock Name="txtpass" Text="Пароль" Margin="50, 10, 5, 0"/>
+            <TextBlock Name="txtgender" Text="Пол*" Margin="50, 10, 5, 0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox x:Name="tbFam" Margin="0, 80, 5, 0"/>
+            <TextBox x:Name="tbName" Margin="0, 10, 5, 0"/>
+            <TextBox x:Name="tbOtch" Margin="0, 10, 5, 0"/>
+            <TextBox x:Name="tbPhone" Margin="0, 10, 5, 0"/>
+            <TextBox x:Name="tbRole" Margin="0, 10, 5, 0"/>
+            <TextBox x:Name="tbLogin" Margin="0, 10, 5, 0"/>
+            <TextBox x:Name="tbPass" Margin="0, 10, 5, 0"/>
+            <ComboBox x:Name="tbGender" Margin="0, 10, 5, 0">
+                <TextBlock Background="#a01c1b" Foreground="White">Мужской</TextBlock>
+                <TextBlock Background="#a01c1b" Foreground="White">Женский</TextBlock>
+            </ComboBox>
+        </StackPanel>
+        </Grid>
+</Page>

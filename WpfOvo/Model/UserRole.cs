@@ -20,7 +20,7 @@ namespace WpfOvo.Model
         public int IDRole { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(13)]
         public string NameRole { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
