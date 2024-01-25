@@ -31,8 +31,8 @@
             <TextBlock Background="#a01c1b" Foreground="White">Отчество</TextBlock>
         </ComboBox>
 
-        <ListView Padding="5" Background="#252526" x:Name="LViewPpl" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" Margin="5" d:ItemsSource="{d:SampleData ItemCount=1}" MouseDoubleClick="Selector_OnSelectionChanged"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding}">
+        <ListView Padding="5" Background="#252526" x:Name="LViewPpl" Grid.Column="0" Grid.ColumnSpan="3" Margin="2,44,8,22" d:ItemsSource="{d:SampleData ItemCount=1}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding}" Grid.RowSpan="2" MouseDoubleClick="Selector_OnSelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
@@ -43,9 +43,9 @@
                     <Border BorderBrush="#83050b" BorderThickness="6" Background="#a01c1b" Padding="5" CornerRadius="15">
                         <Grid>
                             <StackPanel MinWidth="150" MaxWidth="150" MinHeight="195" MaxHeight="195" Grid.Column="1" Margin="5">
-                                <Image Width="85" Height="85" Margin="5" Grid.Row="0" Source="/Resources/image.png"/>
+                                <Image Name="ImageUsers" Width="85" Height="85" Margin="5" Grid.Row="0" Source="/Resources/profile.png"/>
                                 <TextBlock HorizontalAlignment="Center" Margin="3,3,3,0" TextWrapping="Wrap" FontWeight="Bold">
-                                <Run Text="{Binding UserRole.NameRole}"/>
+                                    <Run Text="{Binding UserRole.NameRole}"/>
                                 </TextBlock>
                                 <TextBlock HorizontalAlignment="Center" Margin="3,3,3,0" TextWrapping="Wrap">
                                     <Run Text="

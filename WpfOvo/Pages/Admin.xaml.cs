@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +27,19 @@ namespace WpfOvo.Pages
 
         private void Selector_OnSelectionChanged(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Redact(currentUser));
+            var selectedUser = (Users)LViewPpl.SelectedItem;
+
+            // Check if a user is selected:
+            if (selectedUser != null)
+            {
+                // Navigate to the Redact page with the selected user:
+                NavigationService.Navigate(new Redact(selectedUser));
+            }
+            else
+            {
+                // Handle the case where no user is selected:
+                MessageBox.Show("Please select a user to edit.");
+            }
         }
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {

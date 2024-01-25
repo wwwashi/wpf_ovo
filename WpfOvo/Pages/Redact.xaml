@@ -9,34 +9,46 @@
       Title="Redact">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="260"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
-            <TextBlock Name="txtFam" Text="Фамилия" Margin="50, 80, 5, 0"/>
-            <TextBlock Name="txtName" Text="Имя" Margin="50, 10, 5, 0"/>
-            <TextBlock Name="txtOtch" Text="Отчество*" Margin="50, 10, 5, 0"/>
-            <TextBlock Name="txtphone" Text="Телефон" Margin="50, 10, 5, 0"/>
-            <TextBlock Name="txtRole" Text="Роль" Margin="50, 10, 5, 0"/>
-            <TextBlock Name="txtlogin" Text="Логин" Margin="50, 10, 5, 0"/>
-            <TextBlock Name="txtpass" Text="Пароль" Margin="50, 10, 5, 0"/>
-            <TextBlock Name="txtgender" Text="Пол*" Margin="50, 10, 5, 0"/>
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+            <TextBlock Name="txtFam" Text="Фамилия" Height="30" Margin="50, 20, 5, 0"/>
+            <TextBlock Name="txtName" Text="Имя" Height="30" Margin="50, 20, 5, 0"/>
+            <TextBlock Name="txtOtch" Text="Отчество*" Height="30" Margin="50, 20, 5, 0"/>
+            <TextBlock Name="txtphone" Text="Телефон" Height="30" Margin="50, 20, 5, 0"/>
+            <TextBlock Name="txtRole" Text="Роль" Height="30" Margin="50, 20, 5, 0"/>
+            <TextBlock Name="txtlogin" Text="Логин" Height="30" Margin="50, 20, 5, 0"/>
+            <TextBlock Name="txtpass" Text="Пароль" Height="30" Margin="50, 20, 5, 0"/>
+            <TextBlock Name="txtgender" Text="Пол*" Height="30" Margin="50, 20, 5, 0"/>
         </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBox x:Name="tbFam" Margin="0, 80, 5, 0"/>
-            <TextBox x:Name="tbName" Margin="0, 10, 5, 0"/>
-            <TextBox x:Name="tbOtch" Margin="0, 10, 5, 0"/>
-            <TextBox x:Name="tbPhone" Margin="0, 10, 5, 0"/>
-            <TextBox x:Name="tbRole" Margin="0, 10, 5, 0"/>
-            <TextBox x:Name="tbLogin" Margin="0, 10, 5, 0"/>
-            <TextBox x:Name="tbPass" Margin="0, 10, 5, 0"/>
-            <ComboBox x:Name="tbGender" Margin="0, 10, 5, 0">
-                <TextBlock Background="#a01c1b" Foreground="White">Мужской</TextBlock>
-                <TextBlock Background="#a01c1b" Foreground="White">Женский</TextBlock>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <TextBox x:Name="tbFam" Height="30" Margin="0, 20, 0, 0"/>
+            <TextBox x:Name="tbName" Height="30" Margin="0, 20, 0, 0"/>
+            <TextBox x:Name="tbOtch" Height="30" Margin="0, 20, 0, 0"/>
+            <TextBox x:Name="tbPhone" Height="30" Margin="0, 20, 0, 0"/>
+            <ComboBox x:Name="tbRole" Height="30" Margin="0, 20, 0, 0">
+                <Label Foreground="#252625">Клиент</Label>
+                <Label Foreground="#252625">Администратор</Label>
+                <Label Foreground="#252625">Сотрудник</Label>
+            </ComboBox>
+            <TextBox x:Name="tbLogin" Height="30" Margin="0, 20, 0, 0"/>
+            <TextBox x:Name="tbPass" Height="30" Margin="0, 20, 0, 0"/>
+            <ComboBox x:Name="tbGender" Height="30" Margin="0, 20, 0, 0">
+                <Label Foreground="#252625">Мужской</Label>
+                <Label Foreground="#252625">Женский</Label>
             </ComboBox>
         </StackPanel>
+        <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image x:Name="ImageUser" MaxHeight="150" Source="/Resources/profile.png"/>
+            <Button x:Name="AddImage" Content="добавить фото" Click="AddImage_Click"/>
+        </StackPanel>
+        <Button x:Name="BtnSave" Grid.Row="1" Grid.Column="1" Content="сохранить" Click="BtnSave_Click"/>
         </Grid>
 </Page>

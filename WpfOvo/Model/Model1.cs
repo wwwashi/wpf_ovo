@@ -8,7 +8,7 @@ namespace WpfOvo.Model
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model13")
+            : base("name=Model14")
         {
         }
 
