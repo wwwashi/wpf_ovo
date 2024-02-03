@@ -4,41 +4,26 @@
              xmlns:local="clr-namespace:WpfOvo"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="Label">
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
         <Style TargetType="Button">
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="#a01c1b"/>
-            <Setter Property="Margin" Value="5"/>
             <Setter Property="BorderBrush" Value="#771514"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="14"/>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="FontSize" Value="14"/>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Background" Value="#771514"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="FontSize" Value="14"/>
         </Style>
         <Style TargetType="PasswordBox">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Background" Value="#771514"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-        <Style TargetType="ComboBox">
-            <Setter Property="Background" Value="Red" />
         </Style>
     </Application.Resources>
 </Application>

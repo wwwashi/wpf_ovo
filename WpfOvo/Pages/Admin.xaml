@@ -5,60 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfOvo.Pages" xmlns:sys="http://schemas.microsoft.com/winfx/2009/xaml"
       mc:Ignorable="d"
-        Title="Admin">
+        Title="Admin" MinHeight="600" MinWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="56"/>
-            <RowDefinition/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-
-        <TextBox Name="txtSearch" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5, 0, 5, 0" TextChanged="txtSearch_TextChanged"/>
-        <ComboBox Name="cmbSorting" Background="#a01c1b" Grid.Row="0" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Center" Margin="5, 0, 5, 0">
-            <TextBlock Background="#a01c1b" Foreground="White">По возрастанию</TextBlock>
-            <TextBlock Background="#a01c1b" Foreground="White">По убыванию</TextBlock>
-        </ComboBox>
-        <ComboBox Name="cmbFilter" Background="#a01c1b" BorderBrush="#83050b" BorderThickness="2" Grid.Row="0" Grid.Column="2" SelectedIndex="0" Margin="5, 0, 5, 0" VerticalAlignment="Center">
-            <TextBlock Background="#a01c1b" Foreground="White">Должность</TextBlock>
-            <TextBlock Background="#a01c1b" Foreground="White">Фамилия</TextBlock>
-            <TextBlock Background="#a01c1b" Foreground="White">Имя</TextBlock>
-            <TextBlock Background="#a01c1b" Foreground="White">Отчество</TextBlock>
-        </ComboBox>
-
-        <ListView Padding="5" Background="#252526" x:Name="LViewPpl" Grid.Column="0" Grid.ColumnSpan="3" Margin="2,44,8,22" d:ItemsSource="{d:SampleData ItemCount=1}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding}" Grid.RowSpan="2" MouseDoubleClick="Selector_OnSelectionChanged">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="#83050b" BorderThickness="6" Background="#a01c1b" Padding="5" CornerRadius="15">
-                        <Grid>
-                            <StackPanel MinWidth="150" MaxWidth="150" MinHeight="195" MaxHeight="195" Grid.Column="1" Margin="5">
-                                <Image Name="ImageUsers" Width="85" Height="85" Margin="5" Grid.Row="0" Source="/Resources/profile.png"/>
-                                <TextBlock HorizontalAlignment="Center" Margin="3,3,3,0" TextWrapping="Wrap" FontWeight="Bold">
-                                    <Run Text="{Binding UserRole.NameRole}"/>
-                                </TextBlock>
-                                <TextBlock HorizontalAlignment="Center" Margin="3,3,3,0" TextWrapping="Wrap">
-                                    <Run Text="
-                                         "/>
-                                    <Run Text="{Binding Surname}"/>
-                                    <Run Text="{Binding Name}"/>
-                                    <Run Text="{Binding Midname}"/>
-                                </TextBlock>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Label x:Name ="fio" Grid.Column="0" Grid.ColumnSpan="3" Foreground="White" FontSize="16" Grid.Row="0" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,0,0,0"/>
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,20,0,0">
+            <Button x:Name="btnUsersList" Content="Лист пользователей" Margin="0,20,0,0" Height="30" FontSize="9" MinWidth="150" Width="150" Click="btnUsersList_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

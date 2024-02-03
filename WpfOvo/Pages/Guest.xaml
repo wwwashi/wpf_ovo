@@ -8,6 +8,6 @@
       Title="Guest">
 
     <Grid>
-        <Label x:Name ="fio" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30"/>
+        <Label x:Name ="fio" Content="" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Top" Margin="30"/>
     </Grid>
 </Page>

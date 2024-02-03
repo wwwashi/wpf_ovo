@@ -6,7 +6,7 @@ namespace WpfOvo.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Users
+    public partial class Users : IValidatableObject
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
@@ -19,28 +19,29 @@ namespace WpfOvo.Model
         [Key]
         public int IDUser { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [property: Required]
+        [property: StringLength(20)]
         public string Surname { get; set; }
 
-        [Required]
-        [StringLength(15)]
+        [property: Required]
+        [property: StringLength(15)]
         public string Name { get; set; }
 
-        [StringLength(20)]
+        [property: StringLength(20)]
         public string Midname { get; set; }
 
-        [Required]
-        [StringLength(18)]
+        [property: Required(ErrorMessage = "Не указан номер телефона")]
+        [property: StringLength(11, MinimumLength = 11, ErrorMessage = "Недопустимая длина номера, 79991231213")]
         public string Phone { get; set; }
 
         public int RoleID { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [property: Required]
+        [property: StringLength(50)]
         public string Login { get; set; }
 
-        [Required]
+        [property: Required(ErrorMessage = "Не указан пароль")]
+        [property: StringLength(100, MinimumLength = 7, ErrorMessage = "Недопустимая длина пароля, минимум 7 символов")]
         public string Password { get; set; }
 
         public int? GenderID { get; set; }
@@ -60,5 +61,20 @@ namespace WpfOvo.Model
         public virtual ICollection<SecurityObjects> SecurityObjects1 { get; set; }
 
         public virtual UserRole UserRole { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            List<ValidationResult> errors = new List<ValidationResult>();
+
+            if (string.IsNullOrEmpty(Surname) || !(Surname.Length >= 3 && Surname.Length <= 20))
+                errors.Add(new ValidationResult("Фамилия должно быть от 3 до 20 символов."));
+
+            if (string.IsNullOrEmpty(Name) || !(Name.Length >= 3 && Name.Length <= 15))
+                errors.Add(new ValidationResult("Имя должно быть от 3 до 15 символов."));
+
+            if (string.IsNullOrEmpty(Phone) || Phone.Length != 11)
+                errors.Add(new ValidationResult("Телефон должен состоять из 11 символов"));
+            return errors;
+        }
     }
 }

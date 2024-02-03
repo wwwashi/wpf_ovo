@@ -6,6 +6,21 @@
         xmlns:local="clr-namespace:WpfOvo.Pages"
         mc:Ignorable="d"
         Title="Registration">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="10,5,10,0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="10,0,10,0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#771514"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="260"/>
@@ -13,18 +28,37 @@
             <ColumnDefinition Width="260"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="260">
-            <TextBlock Text="логин:"/>
+            <TextBlock Text="Логин:"/>
             <TextBox x:Name="tbxLogin"/>
-            <TextBlock Text="пароль:"/>
+            <TextBlock Text="Пароль:"/>
             <TextBox x:Name="tbxPassword"/>
-            <TextBlock Text="фамилия:"/>
+            <TextBlock Text="Фамилия:"/>
             <TextBox x:Name="tbxSurname"/>
-            <TextBlock Text="имя:"/>
+            <TextBlock Text="Имя:"/>
             <TextBox x:Name="tbxName"/>
-            <TextBlock Text="номер телефона:"/>
+            <TextBlock Text="Отчество:"/>
+            <TextBox x:Name="tbxMidname"/>
+            <TextBlock Text="Номер телефона:"/>
             <TextBox x:Name="tbxPhone"/>
-            <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center" Width="130">
-                <Button x:Name="btnSign" Content="создать"  Click="btnSign_Click"/>
+            <TextBlock Text="Пол:"/>
+            <ComboBox Name="cbGender" Foreground="#232323" Background="#a01c1b" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Center" Margin="10, 0, 10, 0">
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#a01c1b" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#a01c1b" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#a01c1b" />
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" Value="True">
+                                <Setter Property="Background" Value="#a01c1b" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Resources>
+                <TextBlock FontWeight="Bold">Мужской</TextBlock>
+                <TextBlock FontWeight="Bold">Женский</TextBlock>
+            </ComboBox>
+            <StackPanel Margin="10,10,10,0">
+                <Button x:Name="btnSign" Content="Cоздать" Width="auto" Click="btnSign_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

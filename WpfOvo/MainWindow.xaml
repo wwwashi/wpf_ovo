@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfOvo"
         mc:Ignorable="d"
-        Title="Вневедомственная охрана" MinHeight="600" MinWidth="800" Icon="/Resources/icon.ico">
+        Title="Вневедомственная охрана" MinHeight="600" MinWidth="830" Icon="/Resources/icon.ico">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="#463337">
             <Image Width="60" HorizontalAlignment="Right" Source="/Resources/image.png"/>
-            <Button x:Name="btnBack" HorizontalAlignment="Left" Content="&lt;" Click="btnBack_Click"/>
+            <Button x:Name="btnBack" HorizontalAlignment="Left" Content="&lt;" Height="40" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10,0,0,0" Click="btnBack_Click"/>
             <Label HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Content="Добро пожаловать" VerticalAlignment="Center"/>
         </Grid>
         <Frame x:Name="FrmMain" NavigationUIVisibility="Hidden" ContentRendered="FrmMain_ContentRendered" Grid.Row="1"/>

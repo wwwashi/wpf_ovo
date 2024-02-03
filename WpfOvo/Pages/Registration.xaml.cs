@@ -20,16 +20,24 @@ namespace WpfOvo.Pages
             string name = tbxName.Text;
             string surname = tbxSurname.Text;
             string phone = tbxPhone.Text;
+            string midname = tbxMidname.Text;
+            int? gender;
+            if (cbGender.SelectedIndex == 0)
+                gender = 1;
+            if (cbGender.SelectedIndex == 1)
+                gender = 2;
+            else
+                gender = null;
 
             if (!String.IsNullOrEmpty(phone) && !String.IsNullOrEmpty(surname) && !String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(login) && !String.IsNullOrEmpty(password))
             {
                 if (tbxPassword.Text.Length > 6)
                 {
-                    if (phone.Length == 18)
+                    if (phone.Length == 11)
                     {
                         if (!CheckUserLoginExists(login))
                         {
-                            SaveUser(login, password, name, surname, phone);
+                            SaveUser(login, password, name, surname, phone, midname, gender);
                         }
                         else
                         {
@@ -38,7 +46,7 @@ namespace WpfOvo.Pages
                     }
                     else
                     {
-                        MessageBox.Show("Номер телефона должен иметь формат +9 (999) 999-99-99");
+                        MessageBox.Show("Номер телефона должен иметь формат 79991112233");
                     }
                 }
                 else
@@ -51,7 +59,7 @@ namespace WpfOvo.Pages
                 MessageBox.Show("Пожалуйста, введите данные");
             }
         }
-        private void SaveUser(string login, string password, string name, string surname, string phone)
+        private void SaveUser(string login, string password, string name, string surname, string phone, string midname, int? gender)
         {
             var dbContext = new Model1();
             var user = new Users();
@@ -59,12 +67,15 @@ namespace WpfOvo.Pages
             user.Password = password;
             user.Name = name;
             user.Surname = surname;
+            user.Midname = midname;
             user.Phone = phone;
+            user.GenderID = gender;
             user.RoleID = 1;
 
             dbContext.Users.Add(user);
             dbContext.SaveChanges();
             MessageBox.Show("Пользователь успешно зарегистрирован");
+            NavigationService.Navigate(new Autho());
         }
         private bool CheckUserLoginExists(string login)
         {

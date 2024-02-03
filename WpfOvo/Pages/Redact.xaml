@@ -7,6 +7,21 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Redact">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="50,20,5,0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="10,20,10,0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#771514"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -19,36 +34,60 @@
             <ColumnDefinition Width="260"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
-            <TextBlock Name="txtFam" Text="Фамилия" Height="30" Margin="50, 20, 5, 0"/>
-            <TextBlock Name="txtName" Text="Имя" Height="30" Margin="50, 20, 5, 0"/>
-            <TextBlock Name="txtOtch" Text="Отчество*" Height="30" Margin="50, 20, 5, 0"/>
-            <TextBlock Name="txtphone" Text="Телефон" Height="30" Margin="50, 20, 5, 0"/>
-            <TextBlock Name="txtRole" Text="Роль" Height="30" Margin="50, 20, 5, 0"/>
-            <TextBlock Name="txtlogin" Text="Логин" Height="30" Margin="50, 20, 5, 0"/>
-            <TextBlock Name="txtpass" Text="Пароль" Height="30" Margin="50, 20, 5, 0"/>
-            <TextBlock Name="txtgender" Text="Пол*" Height="30" Margin="50, 20, 5, 0"/>
+            <TextBlock Name="txtFam" Text="Фамилия"/>
+            <TextBlock Name="txtName" Text="Имя"/>
+            <TextBlock Name="txtOtch" Text="Отчество*"/>
+            <TextBlock Name="txtphone" Text="Телефон"/>
+            <TextBlock Name="txtRole" Text="Роль"/>
+            <TextBlock Name="txtlogin" Text="Логин"/>
+            <TextBlock Name="txtpass" Text="Пароль"/>
+            <TextBlock Name="txtgender" Text="Пол*"/>
         </StackPanel>
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-            <TextBox x:Name="tbFam" Height="30" Margin="0, 20, 0, 0"/>
-            <TextBox x:Name="tbName" Height="30" Margin="0, 20, 0, 0"/>
-            <TextBox x:Name="tbOtch" Height="30" Margin="0, 20, 0, 0"/>
-            <TextBox x:Name="tbPhone" Height="30" Margin="0, 20, 0, 0"/>
-            <ComboBox x:Name="tbRole" Height="30" Margin="0, 20, 0, 0">
-                <Label Foreground="#252625">Клиент</Label>
-                <Label Foreground="#252625">Администратор</Label>
-                <Label Foreground="#252625">Сотрудник</Label>
+            <TextBox x:Name="tbFam"/>
+            <TextBox x:Name="tbName"/>
+            <TextBox x:Name="tbOtch"/>
+            <TextBox x:Name="tbPhone"/>
+            <ComboBox Name="tbRole" Background="#a01c1b" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Center" Margin="10, 20, 10, 0">
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#a01c1b" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#a01c1b" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#a01c1b" />
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" Value="True">
+                                <Setter Property="Background" Value="#a01c1b" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Resources>
+                <TextBlock FontWeight="Bold">Клиент</TextBlock>
+                <TextBlock FontWeight="Bold">Администратор</TextBlock>
+                <TextBlock FontWeight="Bold">Сотрудник</TextBlock>
             </ComboBox>
-            <TextBox x:Name="tbLogin" Height="30" Margin="0, 20, 0, 0"/>
-            <TextBox x:Name="tbPass" Height="30" Margin="0, 20, 0, 0"/>
-            <ComboBox x:Name="tbGender" Height="30" Margin="0, 20, 0, 0">
-                <Label Foreground="#252625">Мужской</Label>
-                <Label Foreground="#252625">Женский</Label>
+            <TextBox x:Name="tbLogin"/>
+            <TextBox x:Name="tbPass"/>
+            <ComboBox Name="tbGender" Background="#a01c1b" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Center" Margin="10, 20, 10, 0">
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#a01c1b" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#a01c1b" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#a01c1b" />
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" Value="True">
+                                <Setter Property="Background" Value="#a01c1b" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Resources>
+                <TextBlock FontWeight="Bold">Мужской</TextBlock>
+                <TextBlock FontWeight="Bold">Женский</TextBlock>
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image x:Name="ImageUser" MaxHeight="150" Source="/Resources/profile.png"/>
             <Button x:Name="AddImage" Content="добавить фото" Click="AddImage_Click"/>
         </StackPanel>
-        <Button x:Name="BtnSave" Grid.Row="1" Grid.Column="1" Content="сохранить" Click="BtnSave_Click"/>
+        <Button x:Name="BtnSave" Grid.Row="1" MinWidth="260" Grid.Column="1" Margin="10,5,10,5" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Сохранить" Click="BtnSave_Click"/>
         </Grid>
 </Page>

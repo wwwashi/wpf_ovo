@@ -1,0 +1,94 @@
+﻿<Page x:Class="WpfOvo.Pages.AdminEmployeeList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfOvo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminEmployeeList">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="AddEmployer" Content="Добавить сотрудника" Grid.Column="3" 
+        Margin="5,0,5,0" HorizontalContentAlignment="Center" Height="30" VerticalContentAlignment="Center"
+        FontSize="9" Click="AddEmployer_Click"/>
+
+        <TextBox Name="txtSearch" Grid.Row="0" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" VerticalAlignment="Center" Margin="5, 0, 5, 0" TextChanged="txtSearch_TextChanged"/>
+        <ComboBox Name="cmbSorting" Background="#a01c1b" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Center" Margin="5, 0, 5, 0">
+            <ComboBox.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#a01c1b" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#a01c1b" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#a01c1b" />
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" Value="True">
+                            <Setter Property="Background" Value="#a01c1b" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Resources>
+            <TextBlock FontWeight="Bold">По возрастанию</TextBlock>
+            <TextBlock FontWeight="Bold">По убыванию</TextBlock>
+        </ComboBox>
+        <ComboBox Name="cmbFilter" Background="#a01c1b" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderThickness="2" Grid.Row="0" Grid.Column="2" SelectedIndex="0" Margin="5, 0, 5, 0" VerticalAlignment="Center">
+            <ComboBox.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#a01c1b" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#a01c1b" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#a01c1b" />
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" Value="True">
+                            <Setter Property="Background" Value="#a01c1b" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Resources>
+            <TextBlock FontWeight="Bold">Должность</TextBlock>
+            <TextBlock FontWeight="Bold">Фамилия</TextBlock>
+            <TextBlock FontWeight="Bold">Имя</TextBlock>
+            <TextBlock FontWeight="Bold">Отчество</TextBlock>
+        </ComboBox>
+
+        <ListView Padding="5" Background="#252526" x:Name="LViewPpl" Grid.Column="0" Grid.ColumnSpan="4" Margin="2,44,8,22" d:ItemsSource="{d:SampleData ItemCount=1}"
+        ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding}" Grid.RowSpan="2" MouseDoubleClick="Selector_OnSelectionChanged">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#83050b" BorderThickness="6" Background="#a01c1b" Padding="5" CornerRadius="15">
+                        <Grid>
+                            <StackPanel MinWidth="150" MaxWidth="150" MinHeight="195" MaxHeight="195" Grid.Column="1" Margin="5">
+                                <Image Name="ImageUsers" Width="85" Height="85" Margin="5" Grid.Row="0" Source="/Resources/profile.png"/>
+                                <TextBlock HorizontalAlignment="Center" Margin="3,3,3,0" FontSize="16" TextWrapping="Wrap" FontWeight="Bold">
+                                <Run Text="{Binding UserRole.NameRole}"/>
+                                </TextBlock>
+                                <TextBlock HorizontalAlignment="Center" Margin="3,3,3,0" FontSize="14" TextWrapping="Wrap">
+                                <Run Text="
+                                     "/>
+                                <Run Text="{Binding Surname}"/>
+                                <Run Text="{Binding Name}"/>
+                                <Run Text="{Binding Midname}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

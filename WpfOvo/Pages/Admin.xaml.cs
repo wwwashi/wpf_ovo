@@ -15,115 +15,38 @@ namespace WpfOvo.Pages
     public partial class Admin : Page
     {
         private Users currentUser;
-        private Model1 context = new Model1();
-        
         public Admin(Users currentUser)
         {
             InitializeComponent();
             this.currentUser = currentUser;
-            var ppl = context.Users.ToList();
-            LViewPpl.ItemsSource = ppl;
+            LabelText();
+        }
+        private void LabelText()
+        {
+            fio.Content = $"{TimeOfDay()}! \n{Gender()} {currentUser.Surname} {currentUser.Name} {currentUser?.Midname}";
         }
 
-        private void Selector_OnSelectionChanged(object sender, RoutedEventArgs e)
+        private string Gender()
         {
-            var selectedUser = (Users)LViewPpl.SelectedItem;
-
-            // Check if a user is selected:
-            if (selectedUser != null)
-            {
-                // Navigate to the Redact page with the selected user:
-                NavigationService.Navigate(new Redact(selectedUser));
-            }
-            else
-            {
-                // Handle the case where no user is selected:
-                MessageBox.Show("Please select a user to edit.");
-            }
+            int gender = Convert.ToInt32(currentUser.GenderID.ToString());
+            if (gender == 1)
+                return "Mr";
+            if (gender == 2)
+                return "Mrs";
+            return " ";
         }
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        private string TimeOfDay()
         {
-            string searchText = txtSearch.Text;
+            var currentTime = DateTime.Now;
+            if (currentTime.Hour >= 10 && currentTime.Hour <= 12) return "Доброе утро";
+            if (currentTime.Hour >= 12 && currentTime.Hour <= 17) return "Добрый день";
+            if (currentTime.Hour >= 17 && currentTime.Hour <= 19) return "Добрый вечер";
+            return "Добро пожаловать";
+        }
 
-            if (searchText.Length == 0)
-            {
-                var ppl = context.Users.ToList();
-                LViewPpl.ItemsSource = ppl;
-            }
-            else
-            {
-                if (cmbSorting.SelectedIndex == 0)//по возр
-                {
-                    switch (cmbFilter.SelectedIndex)
-                    {
-                        // Должность
-                        case 0:
-                            var filteredAndSortedPpl = context.Users.Where(u => u.UserRole.NameRole.Contains(searchText))
-                                                      .OrderBy(u => u.UserRole.NameRole)
-                                                      .ToList();
-                            LViewPpl.ItemsSource = filteredAndSortedPpl;
-                            break;
-
-                        // Фамилия
-                        case 1:
-                            var filteredAndSortedPpl1 = context.Users.Where(u => u.Surname.Contains(searchText))
-                                                      .OrderBy(u => u.Surname)
-                                                      .ToList();
-                            LViewPpl.ItemsSource = filteredAndSortedPpl1;
-                            break;
-                        // Имя
-                        case 2:
-                            var filteredAndSortedPpl2 = context.Users.Where(u => u.Name.Contains(searchText))
-                                                      .OrderBy(u => u.Name)
-                                                      .ToList();
-                            LViewPpl.ItemsSource = filteredAndSortedPpl2;
-                            break;
-                        // Отчество
-                        case 3:
-                            var filteredAndSortedPpl3 = context.Users.Where(u => u.Midname.Contains(searchText))
-                                                      .OrderBy(u => u.Midname)
-                                                      .ToList();
-                            LViewPpl.ItemsSource = filteredAndSortedPpl3;
-                            break;
-                    }
-                }
-                if (cmbSorting.SelectedIndex == 1)//по убыв
-                {
-                    switch (cmbFilter.SelectedIndex)
-                    {
-                        // Должность
-                        case 0:
-                            var filteredAndSortedPpl = context.Users.Where(u => u.UserRole.NameRole.Contains(searchText))
-                                                      .OrderByDescending(u => u.UserRole.NameRole)
-                                                      .ToList();
-                            LViewPpl.ItemsSource = filteredAndSortedPpl;
-                            break;
-
-                        // Фамилия
-                        case 1:
-                            var filteredAndSortedPpl1 = context.Users.Where(u => u.Surname.Contains(searchText))
-                                                      .OrderByDescending(u => u.Surname)
-                                                      .ToList();
-                            LViewPpl.ItemsSource = filteredAndSortedPpl1;
-                            break;
-                        // Имя
-                        case 2:
-                            var filteredAndSortedPpl2 = context.Users.Where(u => u.Name.Contains(searchText))
-                                .OrderByDescending(u => u.Name)
-                                .ToList();
-                            LViewPpl.ItemsSource = filteredAndSortedPpl2;
-                            break;
-                        // Отчество
-                        case 3:
-                            var filteredAndSortedPpl3 = context.Users.Where(u => u.Midname.Contains(searchText))
-                                                      .OrderByDescending(u => u.Midname)
-                                                      .ToList();
-                            LViewPpl.ItemsSource = filteredAndSortedPpl3;
-                            break;
-                    }
-
-                }
-            }
+        private void btnUsersList_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AdminEmployeeList());
         }
     }
 }

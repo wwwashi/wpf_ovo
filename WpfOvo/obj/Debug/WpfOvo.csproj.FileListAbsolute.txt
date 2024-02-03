@@ -36,3 +36,5 @@ C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\WpfOvo.exe
 C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\WpfOvo.pdb
 C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\Redact.g.cs
 C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\Redact.baml
+C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\AdminEmployeeList.g.cs
+C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\AdminEmployeeList.baml
