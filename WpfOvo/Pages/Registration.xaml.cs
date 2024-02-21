@@ -77,7 +77,7 @@ namespace WpfOvo.Pages
             MessageBox.Show("Пользователь успешно зарегистрирован");
             NavigationService.Navigate(new Autho());
         }
-        private bool CheckUserLoginExists(string login)
+        private bool CheckUserLoginExists(string login)//проверка не существует ли пользователя с таким же логином
         {
             using (var dbContext = new Model1())
             {

@@ -112,7 +112,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ForgotPass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Guest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NewPass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,8 +160,14 @@
     <Compile Include="Pages\Employee.xaml.cs">
       <DependentUpon>Employee.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ForgotPass.xaml.cs">
+      <DependentUpon>ForgotPass.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Guest.xaml.cs">
       <DependentUpon>Guest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewPass.xaml.cs">
+      <DependentUpon>NewPass.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Redact.xaml.cs">
       <DependentUpon>Redact.xaml</DependentUpon>

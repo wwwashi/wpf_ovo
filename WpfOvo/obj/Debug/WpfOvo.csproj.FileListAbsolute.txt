@@ -38,3 +38,7 @@ C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\Redact.g.cs
 C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\Redact.baml
 C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\AdminEmployeeList.g.cs
 C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\AdminEmployeeList.baml
+C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\ForgotPass.g.cs
+C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\NewPass.g.cs
+C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\ForgotPass.baml
+C:\hwaya\VisualStudio\Project\WpfOvo\WpfOvo\obj\Debug\Pages\NewPass.baml

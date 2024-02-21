@@ -1,0 +1,23 @@
+﻿<Page x:Class="WpfOvo.Pages.NewPass"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfOvo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="NewPass">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="260*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="newpass" Grid.Column="1" MaxWidth="260" VerticalAlignment="Center">
+            <TextBlock x:Name="tbNewPass" Text="Введите новый пароль:" FontSize="14" />
+            <TextBox x:Name="tbxPass"/>
+            <Button x:Name="btnSave" Height="30" Content="Подтвердить" Margin="10,10,10,10" Click="btnSave_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

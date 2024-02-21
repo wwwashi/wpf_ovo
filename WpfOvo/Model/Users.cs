@@ -30,8 +30,8 @@ namespace WpfOvo.Model
         [property: StringLength(20)]
         public string Midname { get; set; }
 
-        [property: Required(ErrorMessage = "Не указан номер телефона")]
-        [property: StringLength(11, MinimumLength = 11, ErrorMessage = "Недопустимая длина номера, 79991231213")]
+        [property: Required]
+        [property: StringLength(11)]
         public string Phone { get; set; }
 
         public int RoleID { get; set; }
@@ -40,8 +40,8 @@ namespace WpfOvo.Model
         [property: StringLength(50)]
         public string Login { get; set; }
 
-        [property: Required(ErrorMessage = "Не указан пароль")]
-        [property: StringLength(100, MinimumLength = 7, ErrorMessage = "Недопустимая длина пароля, минимум 7 символов")]
+        [property: Required]
+        [property: StringLength(100)]
         public string Password { get; set; }
 
         public int? GenderID { get; set; }
@@ -50,6 +50,10 @@ namespace WpfOvo.Model
         public byte[] Image { get; set; }
 
         public virtual Gender Gender { get; set; }
+
+        [property: Required]
+        [property: StringLength(50)]
+        public string Email { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatrolsComposition> PatrolsComposition { get; set; }
@@ -67,7 +71,7 @@ namespace WpfOvo.Model
             List<ValidationResult> errors = new List<ValidationResult>();
 
             if (string.IsNullOrEmpty(Surname) || !(Surname.Length >= 3 && Surname.Length <= 20))
-                errors.Add(new ValidationResult("Фамилия должно быть от 3 до 20 символов."));
+                errors.Add(new ValidationResult("Фамилия должна быть от 3 до 20 символов."));
 
             if (string.IsNullOrEmpty(Name) || !(Name.Length >= 3 && Name.Length <= 15))
                 errors.Add(new ValidationResult("Имя должно быть от 3 до 15 символов."));

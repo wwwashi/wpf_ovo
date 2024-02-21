@@ -190,5 +190,9 @@ namespace WpfOvo.Pages
         }
         private bool CheckingCaptcha() => tblockCaptcha.Text == tboxCaptcha.Text.Trim();
 
+        private void btnForgotPass_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ForgotPass());
+        }
     }
 }

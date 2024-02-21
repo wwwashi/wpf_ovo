@@ -30,6 +30,7 @@ namespace WpfOvo.Pages
         {
             InitializeComponent();
             this.user = selectedUser;
+            tbFam.Text = user.Surname;
             tbName.Text = user.Name;
             tbOtch.Text = user.Midname;
             tbPhone.Text = user.Phone;
